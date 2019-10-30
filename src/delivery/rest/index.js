@@ -1,7 +1,14 @@
 import express from 'express'
-import response from '../../utils/response'
+import { setup as SetupRadiks } from 'radiks-server'
+
+import organizations from './organizations'
+import { response } from '../../utils/builder'
 
 const Router = express.Router()
+
+SetupRadiks().then(RadiksController => {
+  Router.use('/radiks', RadiksController)
+})
 
 Router.get('/', (req, res) => {
 	res.json(response({
@@ -10,5 +17,7 @@ Router.get('/', (req, res) => {
 		data: {}
 	}))
 })
+
+Router.use('/v1/organizations', organizations)
 
 export default Router

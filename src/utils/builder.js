@@ -1,4 +1,4 @@
-export default ({
+const responseBuilder = ({
 	code,
 	message, 
 	data
@@ -14,4 +14,12 @@ export default ({
 	}
 
 	return response
+}
+
+export {
+	responseBuilder as response
+}
+
+export default {
+	response: responseBuilder
 }
