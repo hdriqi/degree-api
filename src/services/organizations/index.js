@@ -1,10 +1,11 @@
 import db from '../../utils/mongodb'
 
 const mutation = {
-	async createOrganization({name, logoUrl}) {
+	async createOrganization({name, logoUrl, publicKey}) {
 		await db.degree.collection('organizations').insertOne({
 			name: name,
-			logoUrl: logoUrl
+			logoUrl: logoUrl,
+			publicKey: publicKey
 		})
 
 		return {

@@ -1,4 +1,5 @@
 import mongo from 'mongodb'
+import Agenda from 'agenda'
 
 class DbClient {
 	constructor() {
@@ -12,6 +13,7 @@ class DbClient {
 		const client = new this.mongoClient(this.url)
 		await client.connect()
 		this[this.dbName] = client.db(this.dbName)
+		this.agenda = new Agenda({mongo: client.db(this.dbName)})
 	}
 }
 

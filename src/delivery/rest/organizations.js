@@ -1,12 +1,12 @@
 import express from 'express'
 
-import resolversOrganizations from '../../resolvers/organizations'
+import servicesOrganizations from '../../services/organizations'
 import { response } from '../../utils/builder'
 
 const Router = express.Router()
 
 Router.get('/', async (req, res) => {
-	const result = await resolversOrganizations.query.getOrganizations({
+	const result = await servicesOrganizations.query.getOrganizations({
 		filter: req.query
 	})
 
@@ -18,7 +18,7 @@ Router.get('/', async (req, res) => {
 })
 
 Router.post('/', async (req, res) => {
-	const result = await resolversOrganizations.mutation.createOrganization({
+	const result = await servicesOrganizations.mutation.createOrganization({
 		name: req.body.name,
 		logoUrl: req.body.logoUrl
 	})
